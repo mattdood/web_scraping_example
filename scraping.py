@@ -5,7 +5,9 @@ import json
 def hackernews_rss():
     try:
         r = requests.get('https://news.ycombinator.com/rss')
-        return print('The scraping job succeeded: ', r.status_code)
+        soup = BeautifulSoup(r.content, features='xml')
+
+        return print(soup)
     except Exception as e:
         print('The scraping job failed. See exception:')
         print(e)
