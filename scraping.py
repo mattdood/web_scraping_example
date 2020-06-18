@@ -1,6 +1,6 @@
-import requests
-from bs4 import BeautifulSoup
-import json
+import requests # pulling data
+from bs4 import BeautifulSoup # xml parsing
+import json # exporting to files
 
 # save function
 def save_function(article_list):
