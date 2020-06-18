@@ -5,12 +5,21 @@ import requests # pulling data
 from bs4 import BeautifulSoup # xml parsing
 import json # exporting to files
 
+from datetime import datetime # for timestamps
+
 app = Celery('tasks')
 
 # save function
 @app.task
 def save_function(article_list):
-    with open('articles.txt', 'w') as outfile:
+
+    # timestamp and filename
+    timestamp = datetime.now().strftime('%Y%m%d-%H%M%S')
+
+    filename = 'articles-{}.json'.format(timestamp)
+
+    # creating our articles file with timestamp
+    with open(filename, 'w').format(timestamp) as outfile:
         json.dump(article_list, outfile)
 
 # scraping function
@@ -38,7 +47,9 @@ def hackernews_rss():
             article = {
                 'title': title,
                 'link': link,
-                'published': published
+                'published': published,
+                'created_at': str(datetime.now()),
+                'source': 'HackerNews RSS'
                 }
 
             # append my "article_list" with each "article" object
