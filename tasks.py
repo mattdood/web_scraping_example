@@ -7,17 +7,14 @@ import json # exporting to files
 
 app = Celery('tasks')
 
-@app.task
-def add(x, y):
-    return x + y
-
-
 # save function
+@app.task
 def save_function(article_list):
     with open('articles.txt', 'w') as outfile:
         json.dump(article_list, outfile)
 
 # scraping function
+@app.task
 def hackernews_rss():
     article_list = []
 
@@ -59,17 +56,17 @@ def hackernews_rss():
 app.conf.beat_schedule = {
     # executes every 1 minute
     'scraping-task-one-min': {
-        'task': 'tasks.<task here>',
+        'task': 'tasks.hackernews_rss',
         'schedule': crontab()
     },
     # executes every 15 minutes
     # 'scraping-task-fifteen-min': {
-    #     'task': 'tasks.<task here>',
+    #     'task': 'tasks.hackernews_rss',
     #     'schedule': crontab(minute='*/15')
     # },
     # executes daily at midnight
     # 'scraping-task-midnight-daily': {
-    #     'task': 'tasks.<task here>',
+    #     'task': 'tasks.hackernews_rss',
     #     'schedule': crontab(minute=0, hour=0)
     # }
 }
