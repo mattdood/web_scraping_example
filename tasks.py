@@ -28,6 +28,7 @@ def hackernews_rss():
     article_list = []
 
     try:
+        print('Starting the scraping tool')
         # execute my request, parse the data using XML
         # parser in BS4
         r = requests.get('https://news.ycombinator.com/rss')
@@ -54,6 +55,7 @@ def hackernews_rss():
 
             # append my "article_list" with each "article" object
             article_list.append(article)
+            print('Finished scraping the articles')
         
         # after the loop, dump my saved objects into a .txt file
         return save_function(article_list)
