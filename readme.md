@@ -5,7 +5,7 @@ This is a project created to illustrate the basics of web scraping by pulling in
 
 1. Building an RSS feed scraper with Python is available [here](https://codeburst.io/building-an-rss-feed-scraper-with-python-73715ca06e1f).
 
-2. Automated web scraping with Python and Celery is available [here]().
+2. Automated web scraping with Python and Celery is available [here](https://codeburst.io/automated-web-scraping-with-python-and-celery-ac02a4a9ce51).
 
 ## Automated scraping commands
 The following are used to start the scheduled scraping with Celery in `tasks.py`.
